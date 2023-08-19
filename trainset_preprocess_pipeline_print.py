@@ -1,4 +1,6 @@
-import sys, os, multiprocessing
+import os
+import sys
+
 from scipy import signal
 
 now_dir = os.getcwd()
@@ -9,7 +11,7 @@ sr = int(sys.argv[2])
 n_p = int(sys.argv[3])
 exp_dir = sys.argv[4]
 noparallel = sys.argv[5] == "True"
-import numpy as np, os, traceback
+import numpy as np, os
 from lib.slicer2 import Slicer
 import librosa, traceback
 from scipy.io import wavfile
@@ -58,7 +60,7 @@ class PreProcess:
             print("%s-%s-%s-filtered" % (idx0, idx1, tmp_max))
             return
         tmp_audio = (tmp_audio / tmp_max * (self.max * self.alpha)) + (
-            1 - self.alpha
+                1 - self.alpha
         ) * tmp_audio
         wavfile.write(
             "%s/%s_%s.wav" % (self.gt_wavs_dir, idx0, idx1),
@@ -88,7 +90,7 @@ class PreProcess:
                     start = int(self.sr * (self.per - self.overlap) * i)
                     i += 1
                     if len(audio[start:]) > self.tail * self.sr:
-                        tmp_audio = audio[start : start + int(self.per * self.sr)]
+                        tmp_audio = audio[start: start + int(self.per * self.sr)]
                         self.norm_write(tmp_audio, idx0, idx1)
                         idx1 += 1
                     else:

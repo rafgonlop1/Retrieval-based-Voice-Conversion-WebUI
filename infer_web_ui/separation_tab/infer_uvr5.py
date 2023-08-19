@@ -31,7 +31,7 @@ class _audio_pre_:
             "agg": agg,
             "high_end_process": "mirroring",
         }
-        mp = ModelParameters("lib/uvr5_pack/lib_v5/modelparams/4band_v2.json")
+        mp = ModelParameters("../../lib/uvr5_pack/lib_v5/modelparams/4band_v2.json")
         model = nets.CascadedASPPNet(mp.param["bins"] * 2)
         cpk = torch.load(model_path, map_location="cpu")
         model.load_state_dict(cpk)
@@ -195,7 +195,7 @@ class _audio_pre_new:
             "agg": agg,
             "high_end_process": "mirroring",
         }
-        mp = ModelParameters("lib/uvr5_pack/lib_v5/modelparams/4band_v3.json")
+        mp = ModelParameters("../../lib/uvr5_pack/lib_v5/modelparams/4band_v3.json")
         nout = 64 if "DeReverb" in model_path else 48
         model = CascadedNet(mp.param["bins"] * 2, nout)
         cpk = torch.load(model_path, map_location="cpu")

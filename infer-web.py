@@ -7,14 +7,13 @@ import warnings
 import gradio as gr
 import torch
 
+sys.path.append(os.getcwd())
+
 from infer_web_ui.ckpt_tab.tab import load_ckpt_tab
 from infer_web_ui.faq_tab.tab import load_faq
 from infer_web_ui.inference_tab.tab import load_inference_tab
 from infer_web_ui.onnx.tab import load_onnx_tab
 from infer_web_ui.train_tab.tab import load_train_tab
-
-sys.path.append(os.getcwd())
-
 from infer_web_ui.separation_tab.tab import load_separation_tab
 from infer_web_ui.utils import i18n, now_dir, tmp, config
 
@@ -37,7 +36,6 @@ torch.manual_seed(114514)
 os.environ["TEMP"] = tmp
 os.environ["OPENBLAS_NUM_THREADS"] = "1"
 os.environ["no_proxy"] = "localhost, 127.0.0.1, ::1"
-
 
 # Gradio UI
 with gr.Blocks(title="RVC WebUI") as app:
@@ -69,9 +67,8 @@ with gr.Blocks(title="RVC WebUI") as app:
             load_onnx_tab()
 
         # Faq tab
-        tab_faq = i18n("常见问题解答")
-        with gr.TabItem(tab_faq):
-            load_faq(tab_faq)
+        with gr.TabItem("FAQ"):
+            load_faq()
 
     # License
     gr.Markdown(

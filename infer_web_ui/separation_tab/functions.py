@@ -4,7 +4,7 @@ import traceback
 import ffmpeg
 import torch
 
-from infer_uvr5 import _audio_pre_, _audio_pre_new
+from infer_web_ui.separation_tab.infer_uvr5 import _audio_pre_, _audio_pre_new
 from infer_web_ui.utils import config, weight_uvr5_root, tmp
 
 
@@ -19,7 +19,7 @@ def uvr(model_name, inp_root, save_root_vocal, paths, save_root_ins, agg, format
             save_root_ins.strip(" ").strip('"').strip("\n").strip('"').strip(" ")
         )
         if model_name == "onnx_dereverb_By_FoxJoy":
-            from MDXNet import MDXNetDereverb
+            from infer_web_ui.separation_tab.MDXNet import MDXNetDereverb
 
             pre_fun = MDXNetDereverb(15)
         else:

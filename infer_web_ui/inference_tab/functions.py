@@ -14,7 +14,7 @@ from lib.infer_pack.models import (
     SynthesizerTrnMs768NSFsid,
     SynthesizerTrnMs768NSFsid_nono,
 )
-from vc_infer_pipeline import VC
+from infer_web_ui.inference_tab.vc_infer_pipeline import VC
 
 # Set config
 if config.dml:

@@ -1,4 +1,6 @@
-import os, sys, traceback
+import os
+import sys
+import traceback
 
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 os.environ["PYTORCH_MPS_HIGH_WATERMARK_RATIO"] = "0.0"
@@ -31,10 +33,12 @@ else:
 
     device = torch_directml.device(torch_directml.default_device())
 
+
     def forward_dml(ctx, x, scale):
         ctx.scale = scale
         res = x.clone().detach()
         return res
+
 
     fairseq.modules.grad_multiply.GradMultiply.forward = forward_dml
 
